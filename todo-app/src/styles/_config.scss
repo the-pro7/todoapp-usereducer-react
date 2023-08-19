@@ -1,0 +1,26 @@
+// font-family: 'Nunito', sans-serif;
+// font-family: 'Roboto', sans-serif;
+
+@function family($name) {
+    @if $name == "nito" {
+        @return 'Nunito', sans-serif;
+    } @else {
+        @return 'Roboto', sans-serif;
+    }
+}
+
+// weights
+$font-weights: (
+    "bold": 700,
+    "medium": 500,
+    "regular": 400,
+    "light": 300
+);
+
+@function weights($name) {
+    @return map-get($font-weights, $name)
+}
+
+// gradient colors
+$start: #fa5252;
+$end: #ffe066;

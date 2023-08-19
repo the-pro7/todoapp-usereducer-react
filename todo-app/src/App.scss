@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700&family=Roboto:wght@400;700&display=swap");
+
+// Dependecies
+@import "./styles/config";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: family(nito);
+  background: linear-gradient(to right, $start, $end);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.taskApp {
+  width: 100vh;
+}
+
+.Form {
+  background-color: #fff;
+  display: flex;
+  padding: 1em;
+  gap: 1em;
+  border-radius: 0.5rem;
+  max-width: 450px;
+  margin: 0 auto;
+  box-shadow: 3px 4px 15px rgb(0 0 0 / 0.2);
+
+  & > * {
+    padding: 1em;
+    border: 0;
+    font-family: family(nito);
+  }
+
+  & input {
+    flex: 1;
+
+    &:focus {
+      outline-color: transparent;
+    }
+  }
+  & button {
+    color: #fff;
+    background-color: $start;
+    font-weight: weights(bold);
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: 300ms ease;
+
+    &:hover {
+      background-color: lighten($start, 10%);
+    }
+  }
+}
