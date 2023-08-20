@@ -28,7 +28,7 @@ body {
   padding: 1em;
   gap: 1em;
   border-radius: 0.5rem;
-  max-width: 450px;
+  max-width: 550px;
   margin: 0 auto;
   box-shadow: 3px 4px 15px rgb(0 0 0 / 0.2);
 
@@ -86,13 +86,25 @@ body {
     justify-content: space-around;
     position: relative;
 
-    .delete {
-      border: 0;
-      background: transparent;
-      color: $start;
-      font-weight: weights(bold);
-      font-size: 1.2rem;
-      cursor: pointer;
+    .functional-buttons {
+      display: flex;
+      align-items: center;
+      gap: .5em;
+      
+
+      .delete {
+        border: 0;
+        background: transparent;
+        color: $start;
+        font-weight: weights(bold);
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+
+      .edit {
+        @extend .delete;
+        color: rgb(52, 49, 49);
+      }
     }
 
     .tooltip-text {
@@ -122,9 +134,28 @@ body {
       }
     }
 
-    & > :hover {
+    & .delete:hover {
       .tooltip-text {
         opacity: revert;
+      }
+    }
+
+    // & .edit:hover {
+    //   .tooltip-text {
+    //     &::before {
+    //       content: "Edit";
+    //     }
+    //   }
+    // }
+
+    .edit-task {
+      border: 0;
+      border-bottom: thin solid #00000085;
+      background-color: transparent;
+
+      &:is(:focus, :active) {
+        // display: none;
+        outline-color: transparent;
       }
     }
   }

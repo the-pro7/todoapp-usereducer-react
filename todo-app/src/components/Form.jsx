@@ -6,8 +6,9 @@ const Form = ({ task, setTask, dispatch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    dispatch({ type: ACTIONS.ADD, payload: { task: task } });
+    task
+      ? dispatch({ type: ACTIONS.ADD, payload: { task: task } })
+      : alert("You cannot add an empty task");
     setTask("");
   };
 
@@ -22,7 +23,9 @@ const Form = ({ task, setTask, dispatch }) => {
         value={task}
         onChange={(e) => setTask(e.target.value)}
       />
-      <button type="submit" onClick={() => inputRef.current.focus()}>Add</button>
+      <button type="submit" onClick={() => inputRef.current.focus()}>
+        Add
+      </button>
     </form>
   );
 };
