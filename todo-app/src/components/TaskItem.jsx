@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 
-const TaskItem = ({ task, dispatch, edit, }) => {
+const TaskItem = ({ task, dispatch, edit }) => {
   // const defaultValue = useRef({task : task})
   const [editValue, setEditValue] = useState(task.task);
   return (
@@ -20,8 +20,8 @@ const TaskItem = ({ task, dispatch, edit, }) => {
       {!task.checked ? (
         edit ? (
           <input
-          type="text"
-          className="edit-task"
+            type="text"
+            className="edit-task"
             value={editValue}
             onChange={(e) => {
               setEditValue(e.target.value);

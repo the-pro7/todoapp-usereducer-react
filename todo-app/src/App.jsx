@@ -32,10 +32,10 @@ function App() {
 
       case ACTIONS.EDIT:
         setEdit((prev) => !prev);
-        // return tasks.map((task) => {
-        //   task.id === action.payload.id ? { ...task, task: editValue } : task;
-        // });
-        // console.log(`edit ${edit ? "ready" : "not ready"}`, edit);
+      // return tasks.map((task) => {
+      //   task.id === action.payload.id ? { ...task, task: editValue } : task;
+      // });
+      // console.log(`edit ${edit ? "ready" : "not ready"}`, edit);
 
       default:
         return tasks;
