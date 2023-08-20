@@ -1,22 +1,36 @@
 import { useReducer, useState } from "react";
 import "./App.scss";
 import Form from "./components/Form";
+import TaskItem from "./components/TaskItem";
+
+export const ACTIONS = {
+  ADD: "add",
+  DELETE: "delete",
+  CHECK: "check",
+};
 
 function App() {
-  const ACTIONS = {
-    ADD: "add",
-    DELETE: "delete",
-    CHECK: "check",
-  };
-
   const reducer = (tasks, action) => {
     switch (action.type) {
       case ACTIONS.ADD:
-        const newTask = { id: crypto.randomUUID(), task: action.payload, checked: false };
-        [...tasks, newTask];
-        break;
-      default: 
-        return tasks
+        const newTask = {
+          id: Date.now(),
+          task: action.payload.task,
+          checked: false,
+        };
+        console.log(newTask);
+        return [...tasks, newTask];
+      case ACTIONS.CHECK:
+        return tasks.map((task) =>
+          task.id === action.payload.id
+            ? { ...task, checked: !task.checked }
+            : task
+        );
+      case ACTIONS.DELETE:
+        return tasks.filter((task) => task.id !== action.payload.id);
+
+      default:
+        return tasks;
     }
   };
 
@@ -26,10 +40,11 @@ function App() {
   return (
     <div className="taskApp">
       <Form task={task} setTask={setTask} dispatch={dispatch} />
+      {/* {console.log(tasks)} */}
       <ul className="tasks">
-        {tasks?.map((task) => {
-          <li key={task.id}>{task.task}</li>;
-        })}
+        {tasks?.map((task) => (
+          <TaskItem key={task.id} task={task} dispatch={dispatch} />
+        ))}
       </ul>
     </div>
   );
