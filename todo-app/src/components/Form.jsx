@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { ACTIONS } from "../App";
+import PropTypes from "prop-types";
 
 const Form = ({ task, setTask, dispatch }) => {
   const inputRef = useRef();
@@ -29,5 +30,11 @@ const Form = ({ task, setTask, dispatch }) => {
     </form>
   );
 };
+
+Form.propTypes = {
+  task: PropTypes.string.isRequired,
+  setTask: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
+}
 
 export default Form;
