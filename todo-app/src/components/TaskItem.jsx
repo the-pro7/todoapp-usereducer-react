@@ -5,9 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 
-const TaskItem = ({ task, dispatch, edit }) => {
-  // const defaultValue = useRef({task : task})
-  const [editValue, setEditValue] = useState(task.task);
+const TaskItem = ({ task, dispatch, }) => {
+  const [editValue, setEditValue] = useState(task.task)
   return (
     <li key={task.id}>
       <input
@@ -18,13 +17,20 @@ const TaskItem = ({ task, dispatch, edit }) => {
         }}
       />
       {!task.checked ? (
-        edit ? (
+        task.editing ? (
           <input
             type="text"
             className="edit-task"
             value={editValue}
             onChange={(e) => {
-              setEditValue(e.target.value);
+              setEditValue(e.target.value)
+              dispatch({
+                type: ACTIONS.EDIT,
+                payload: { task: editValue, id: task.id },
+              });
+            }}
+            onBlur={() => {
+              dispatch({ type: ACTIONS.EDIT_DONE, payload: { id: task.id, task: editValue } });
             }}
           />
         ) : (
@@ -63,9 +69,7 @@ const TaskItem = ({ task, dispatch, edit }) => {
 TaskItem.propTypes = {
   task: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
-  edit: PropTypes.bool.isRequired,
-  editValue: PropTypes.string.isRequired,
-  setEditValue: PropTypes.func.isRequired,
+  // edit: PropTypes.bool.isRequired,
 };
 
 export default TaskItem;

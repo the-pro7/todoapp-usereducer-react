@@ -8,6 +8,7 @@ export const ACTIONS = {
   DELETE: "delete",
   CHECK: "check",
   EDIT: "edit",
+  EDIT_DONE: "edit-done",
 };
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           id: Date.now(),
           task: action.payload.task,
           checked: false,
+          editing: false,
         };
         console.log(newTask);
         return [...tasks, newTask];
@@ -31,11 +33,17 @@ function App() {
         return tasks.filter((task) => task.id !== action.payload.id);
 
       case ACTIONS.EDIT:
-        setEdit((prev) => !prev);
-      // return tasks.map((task) => {
-      //   task.id === action.payload.id ? { ...task, task: editValue } : task;
-      // });
-      // console.log(`edit ${edit ? "ready" : "not ready"}`, edit);
+        return tasks.map((task) =>
+          task.id === action.payload.id
+            ? { ...task, editing: true }
+            : { ...task, editing: false }
+        );
+      case ACTIONS.EDIT_DONE:
+        return tasks.map((task) =>
+          task.id === action.payload.id
+            ? { ...task, editing: false, task: action.payload.task }
+            : task
+        );
 
       default:
         return tasks;
@@ -43,7 +51,7 @@ function App() {
   };
 
   const [task, setTask] = useState("");
-  const [edit, setEdit] = useState(false);
+  // const [edit, setEdit] = useState(null);
   const [tasks, dispatch] = useReducer(reducer, []);
 
   return (
@@ -56,9 +64,7 @@ function App() {
             key={task.id}
             task={task}
             dispatch={dispatch}
-            edit={edit}
-            // editValue={editValue}
-            // setEditValue={setEditValue}
+            // edit={edit}
           />
         ))}
       </ul>
