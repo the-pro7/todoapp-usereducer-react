@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 
-const TaskItem = ({ task, dispatch, }) => {
-  const [editValue, setEditValue] = useState(task.task)
+const TaskItem = ({ task, dispatch }) => {
+  const [editValue, setEditValue] = useState(task.task);
   return (
     <li key={task.id}>
       <input
@@ -23,14 +23,17 @@ const TaskItem = ({ task, dispatch, }) => {
             className="edit-task"
             value={editValue}
             onChange={(e) => {
-              setEditValue(e.target.value)
+              setEditValue(e.target.value);
               dispatch({
                 type: ACTIONS.EDIT,
                 payload: { task: editValue, id: task.id },
               });
             }}
             onBlur={() => {
-              dispatch({ type: ACTIONS.EDIT_DONE, payload: { id: task.id, task: editValue } });
+              dispatch({
+                type: ACTIONS.EDIT_DONE,
+                payload: { id: task.id, task: editValue },
+              });
             }}
           />
         ) : (
