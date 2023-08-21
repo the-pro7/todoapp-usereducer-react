@@ -56,7 +56,9 @@ function App() {
 
   return (
     <div className="taskApp">
-      <h1 className="appName">Tasker v1.1 <sup className="beta">BETA</sup></h1>
+      <h1 className="appName">
+        Tasker v1.1 <sup className="beta">BETA</sup>
+      </h1>
       <Form task={task} setTask={setTask} dispatch={dispatch} />
       {/* {console.log(tasks)} */}
       <ul className="tasks">

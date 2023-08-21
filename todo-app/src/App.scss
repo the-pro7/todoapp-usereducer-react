@@ -24,15 +24,15 @@ body {
     line-height: 1.5em;
     font-family: family(boto);
     color: #fff;
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
 
     .beta {
-      font-size: .75rem;
+      font-size: 0.75rem;
       font-weight: weights(bold);
       color: $start;
       background-color: #fff;
-      padding: .5em;
-      border-radius: .2rem;
+      padding: 0.5em;
+      border-radius: 0.2rem;
       box-shadow: 3px 4px 15px rgb(0 0 0 / 0.2);
     }
   }
