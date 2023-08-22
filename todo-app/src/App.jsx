@@ -1,7 +1,14 @@
-import { useReducer, useState } from "react";
+import { Suspense, lazy, useReducer, useState } from "react";
 import "./App.scss";
 import Form from "./components/Form";
-import TaskItem from "./components/TaskItem";
+// import TaskItem from "./components/TaskItem";
+
+// Dynamically import the TaskItem components
+const TaskItem = lazy(() =>
+  import("./components/TaskItem").then((module) => {
+    return { default: module.TaskItem };
+  })
+);
 
 export const ACTIONS = {
   ADD: "add",
@@ -60,16 +67,25 @@ function App() {
         Tasker v1.1 <sup className="beta">BETA</sup>
       </h1>
       <Form task={task} setTask={setTask} dispatch={dispatch} />
-      {/* {console.log(tasks)} */}
+      {tasks.length ? (
+        <p className="tasks-added">
+          Added {tasks.length} {tasks.length === 1 ? "task" : "tasks"}
+        </p>
+      ) : (
+        <p className="tasks-added">No tasks added</p>
+      )}
       <ul className="tasks">
-        {tasks?.map((task) => (
-          <TaskItem
-            key={task.id}
-            task={task}
-            dispatch={dispatch}
-            // edit={edit}
-          />
-        ))}
+        <Suspense
+          fallback={
+            <p style={{ background: "transparent", textAlign: "center" }}>
+              Adding task...
+            </p>
+          }
+        >
+          {tasks?.map((task) => (
+            <TaskItem key={task.id} task={task} dispatch={dispatch} />
+          ))}
+        </Suspense>
       </ul>
     </div>
   );

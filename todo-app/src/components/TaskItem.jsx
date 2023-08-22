@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 
-const TaskItem = ({ task, dispatch }) => {
+export const TaskItem = ({ task, dispatch }) => {
   const [editValue, setEditValue] = useState(task.task);
   return (
     <li key={task.id}>
@@ -75,4 +75,4 @@ TaskItem.propTypes = {
   // edit: PropTypes.bool.isRequired,
 };
 
-export default TaskItem;
+// export default TaskItem;
